@@ -1,1 +1,3 @@
-import Hello from Hello
+from HelloPkg import Hello 
+
+Hello.helloWorld()
