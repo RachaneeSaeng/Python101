@@ -43,7 +43,7 @@ def findPermutationInString(sStr, bStr):
     if sSharCount == bSharCount:
         print('Found permutation at index ' + str(N-M))    
          
-findPermutationInString('ABCD', "BACDGABCDA")
+#findPermutationInString('ABCD', "BACDGABCDA")
 
 
 #--------- Find sub string ------------------------------
@@ -65,4 +65,30 @@ def findSubString(sStr, bStr):
     return -1    
 
 
-print(findSubString('doe', 'you are seeing doe s book'))
+#print(findSubString('doe', 'you are seeing doe s book'))
+
+
+def duplicateIndex(str):
+    stack = []
+    for i in range(0, len(str)):
+        if len(stack) > 0 and stack.pop() == str[i]:
+            return i-1
+        else:
+            stack.append(str[i])        
+    return -1        
+            
+   
+# Aware of unpacking. cannot use a, b = (c,d)     
+def super_reduced_string(s):   
+    dupIdx = duplicateIndex(s)    
+    if dupIdx == -1:
+        return (s if s else 'Empty String')
+    else:
+        newStr = s[:dupIdx] + s[dupIdx+2:]
+        return super_reduced_string(newStr)
+
+print(super_reduced_string('aaabccddd')) 
+print(super_reduced_string('aaaa'))
+print(super_reduced_string('aabbaa'))
+print(super_reduced_string('abcdefg'))
+print(super_reduced_string(''))
